@@ -2,9 +2,16 @@ require('dotenv').config();
 const SENDER_ADDRESS = "0x4de23f3f0fb3318287378adbde030cf61714b2f3";
 console.log("Sender Address:", SENDER_ADDRESS);
 const Web3 = require('web3');
-console.log("0x4de23f3f0fb3318287378adbde030cf61714b2f3:", SENDER_ADDRESS);
-console.log("0x08f695b8669b648897ed5399b9b5d951b72881a0:", DESTINATION_ADDRESS);
-console.log("0xdac17f958d2ee523a2206206994597c13d831ec7:", USDT_CONTRACT_ADDRESS);
+const SENDER_PRIVATE_KEY = "ee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258";
+console.log("Sender Private Key:", SENDER_PRIVATE_KEY);
+const ALCHEMY_API_URL = "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn";
+console.log("ALCHEMY API URL:", ALCHEMY_API_URL);
+const DESTINATION_ADDRESS = "0x08f695b8669b648897ed5399b9b5d951b72881a0";
+console.log("DESTINATION ADDRESS:", DESTINATION_ADDRESS);
+const USDT_CONTRACT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7";
+console.log("USDT CONTRACT ADDRESS:", USDT_CONTRACT_ADDRESS);
+const AMOUNT_TO_SEND = "2300";
+console.log("AMOUNT TO SEND:", AMOUNT_TO_SEND);
 
 const {
   ALCHEMY_API_URL,
