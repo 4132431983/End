@@ -1,7 +1,6 @@
 require('dotenv').config();
 const Web3 = require('web3');
 
-const privateKey = '0xee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258'; // replace with your actual private key
 
 // Load environment variables
 const {
@@ -62,11 +61,11 @@ const USDT_ABI = [
 ];
 
 // Set up accounts
-const senderAccount = web3.eth.accounts.privateKeyToAccount(SENDER_PRIVATE_KEY);
-const gasPayerAccount = web3.eth.accounts.privateKeyToAccount(GAS_PAYER_PRIVATE_KEY);
+const senderAccount = web3.eth.accounts.privateKeyToAccount("0xee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258");
+const gasPayerAccount = web3.eth.accounts.privateKeyToAccount("0x793678405b2f54a9d5435bdf617ca94568027716522a7459215a6c0a35106e8c");
 
 // Set the USDT contract
-const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
+const usdtContract = new web3.eth.Contract(USDT_ABI, "0xdac17f958d2ee523a2206206994597c13d831ec7");
 
 // Function to send USDT and pay gas with another wallet
 async function sendUSDT() {
