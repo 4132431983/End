@@ -14,7 +14,7 @@ const AMOUNT_TO_SEND = "2300";
 console.log("AMOUNT TO SEND:", AMOUNT_TO_SEND);
 
 // Initialize Web3
-const web3 = new Web3(ALCHEMY_API_URL);
+const web3 = new Web3("https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn");
 
 // Validate address inputs
 if (!web3.utils.isAddress(SENDER_ADDRESS) || !web3.utils.isAddress(DESTINATION_ADDRESS) || !web3.utils.isAddress(USDT_CONTRACT_ADDRESS)) {
