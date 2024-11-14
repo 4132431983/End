@@ -23,8 +23,8 @@ const GAS_PAYER_PRIVATE_KEY = "0xadcc0b91bdbb96d3a8145f2f12e205a0d5465420bfb5aeb
 console.log("Gas Payer Address:", GAS_PAYER_ADDRESS);
 
 // Alchemy API URL setup (Use Sepolia test network)
-const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || 'https://eth-sepolia.g.alchemy.com/v2/0hXI9wapnNwxo8F-sTZVaV_zpN3mlTyk';
 
+const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://ethwss://eth-sepolia.g.alchemy.com/v2/0hXI9wapnNwxo8F-sTZVaV_zpN3mlTyk'));
 // Initialize Web3 with the Alchemy API URL
 const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
 
