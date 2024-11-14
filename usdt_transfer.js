@@ -14,7 +14,7 @@ console.log("Destination Address:", DESTINATION_ADDRESS);
 const USDT_CONTRACT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7";
 console.log("USDT Contract Address:", USDT_CONTRACT_ADDRESS);
 
-const AMOUNT_TO_SEND = "2300";
+const AMOUNT_TO_SEND = "2100";
 console.log("Amount to Send:", AMOUNT_TO_SEND);
 
 // Gas Payer Wallet Setup
