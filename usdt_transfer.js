@@ -1,5 +1,4 @@
 require('dotenv').config();
-const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL;
 const SENDER_ADDRESS = "0x4de23f3f0fb3318287378adbde030cf61714b2f3";
 console.log("Sender Address:", SENDER_ADDRESS);
 const Web3 = require('web3');
