@@ -18,11 +18,10 @@ const AMOUNT_TO_SEND = "2300";
 console.log("Amount to Send:", AMOUNT_TO_SEND);
 
 // Alchemy API URL setup
-const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn";
+const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || 'https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn';
 
 // Initialize Web3 with the Alchemy API URL
-const provider = new Web3.providers.HttpProvider(ALCHEMY_API_URL);
-const web3 = new Web3(provider);
+const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
 
 // Confirm connection by fetching the latest block number
 web3.eth.getBlockNumber()
