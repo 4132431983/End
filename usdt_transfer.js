@@ -13,7 +13,7 @@ const {
 } = process.env;
 
 // Initialize Web3
-const web3 = new Web3(ALCHEMY_API_URL);
+const web3 = new Web3(https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn);
 
 // USDT ERC-20 ABI (simplified for transfer)
 const USDT_ABI = [
