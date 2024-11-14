@@ -1,11 +1,11 @@
 require('dotenv').config();
+const SENDER_ADDRESS = "0x4de23f3f0fb3318287378adbde030cf61714b2f3";
+console.log("Sender Address:", SENDER_ADDRESS);
 const Web3 = require('web3');
 console.log("0x4de23f3f0fb3318287378adbde030cf61714b2f3:", SENDER_ADDRESS);
 console.log("0x08f695b8669b648897ed5399b9b5d951b72881a0:", DESTINATION_ADDRESS);
 console.log("0xdac17f958d2ee523a2206206994597c13d831ec7:", USDT_CONTRACT_ADDRESS);
-const SENDER_ADDRESS = "0x4de23f3f0fb3318287378adbde030cf61714b2f3";
-console.log("0x4de23f3f0fb3318287378adbde030cf61714b2f3:", SENDER_ADDRESS);
-// Load environment variables
+
 const {
   ALCHEMY_API_URL,
   SENDER_PRIVATE_KEY,
