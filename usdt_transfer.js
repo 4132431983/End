@@ -1,6 +1,7 @@
 require('dotenv').config();
 const Web3 = require('web3');
 
+const privateKey = '0xee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258'; // replace with your actual private key
 
 // Load environment variables
 const {
