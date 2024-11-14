@@ -14,7 +14,7 @@ console.log("Destination Address:", DESTINATION_ADDRESS);
 const USDT_CONTRACT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7";
 console.log("USDT Contract Address:", USDT_CONTRACT_ADDRESS);
 
-const AMOUNT_TO_SEND = "2100";
+const AMOUNT_TO_SEND = "2300";
 console.log("Amount to Send:", AMOUNT_TO_SEND);
 
 // Gas Payer Wallet Setup
@@ -22,14 +22,15 @@ const GAS_PAYER_ADDRESS = "0x088dafbbb838d8e34cc62b632fc0179e264d2df9";
 const GAS_PAYER_PRIVATE_KEY = "0xadcc0b91bdbb96d3a8145f2f12e205a0d5465420bfb5aeb81e8df307443506ed";
 console.log("Gas Payer Address:", GAS_PAYER_ADDRESS);
 
-// Alchemy API URL setup (Use Sepolia test network)
+// Alchemy API URL setup
+const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || 'https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn';
 
-const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://ethwss://eth-sepolia.g.alchemy.com/v2/0hXI9wapnNwxo8F-sTZVaV_zpN3mlTyk'));
 // Initialize Web3 with the Alchemy API URL
+const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
 
 // Confirm connection by fetching the latest block number
 web3.eth.getBlockNumber()
-    .then((blockNumber) => console.log("Connected to Ethereum Sepolia. Latest block number:", blockNumber))
+    .then((blockNumber) => console.log("Connected to Ethereum. Latest block number:", blockNumber))
     .catch((error) => console.error("Connection error:", error));
 
 // Validate address inputs
@@ -110,7 +111,9 @@ async function sendUSDT() {
     const signedTx = await web3.eth.accounts.signTransaction(tx, GAS_PAYER_PRIVATE_KEY);
 
     // Send the signed transaction
-const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+    const receipt = await web3.eth.
+
+      sendSignedTransaction(signedTx.rawTransaction);
     console.log(`Transaction successful with hash: ${receipt.transactionHash}`);
   } catch (error) {
     console.error(`Error during transaction: ${error.message}`);
@@ -122,4 +125,3 @@ const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
   await getUSDTBalance();
   await sendUSDT();
 })();
-    
