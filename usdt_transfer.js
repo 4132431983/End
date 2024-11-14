@@ -80,8 +80,14 @@ async function sendUSDT() {
 
     // Estimate gas for the transaction
     const gasLimit = await usdtContract.methods.transfer(DESTINATION_ADDRESS, amountInWei).estimateGas({
-      from: GAS_PAYER_ADDRESS,  // Use gas payer's address to estimate gas
+      from: SENDER_ADDRESS,  // Use sender's address to estimate gas
     });
+    console.log(`Estimated Gas Limit: ${gasLimit}`);
+
+    // Ensure that gasLimit is set properly
+    if (!gasLimit || gasLimit <= 0) {
+      throw new Error('Gas limit estimation failed.');
+    }
 
     // Create the transaction
     const tx = {
