@@ -1,30 +1,38 @@
 require('dotenv').config();
 const Web3 = require('web3');
+
+// Address and private key setup
 const SENDER_ADDRESS = "0x4de23f3f0fb3318287378adbde030cf61714b2f3";
 console.log("Sender Address:", SENDER_ADDRESS);
+
 const SENDER_PRIVATE_KEY = "ee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258";
 console.log("Sender Private Key:", SENDER_PRIVATE_KEY);
+
 const DESTINATION_ADDRESS = "0x08f695b8669b648897ed5399b9b5d951b72881a0";
-console.log("DESTINATION ADDRESS:", DESTINATION_ADDRESS);
+console.log("Destination Address:", DESTINATION_ADDRESS);
+
 const USDT_CONTRACT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7";
-console.log("USDT CONTRACT ADDRESS:", USDT_CONTRACT_ADDRESS);
+console.log("USDT Contract Address:", USDT_CONTRACT_ADDRESS);
+
 const AMOUNT_TO_SEND = "2300";
-console.log("AMOUNT TO SEND:", AMOUNT_TO_SEND);
+console.log("Amount to Send:", AMOUNT_TO_SEND);
 
-
+// Alchemy API URL setup
 const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn";
 
-Alchemy API URL const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
+// Initialize Web3 with the Alchemy API URL
+const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
 
-fetching the latest block number web3.eth.getBlockNumber() .then((blockNumber) =>console.log("Connected to Ethereum. Latest block number:", blockNumber)) .catch((error) => console.error("Connection error:", error));
-
-
-
-
+// Confirm connection by fetching the latest block number
+web3.eth.getBlockNumber()
+    .then((blockNumber) => console.log("Connected to Ethereum. Latest block number:", blockNumber))
+    .catch((error) => console.error("Connection error:", error));
 
 // Validate address inputs
-if (!web3.utils.isAddress(SENDER_ADDRESS) || !web3.utils.isAddress(DESTINATION_ADDRESS) || !web3.utils.isAddress(USDT_CONTRACT_ADDRESS)) {
-  throw new Error("One or more Ethereum addresses are invalid. Check SENDER_ADDRESS, DESTINATION_ADDRESS, and USDT_CONTRACT_ADDRESS in your .env file.");
+if (!web3.utils.isAddress(SENDER_ADDRESS) || 
+    !web3.utils.isAddress(DESTINATION_ADDRESS) || 
+    !web3.utils.isAddress(USDT_CONTRACT_ADDRESS)) {
+  throw new Error("One or more Ethereum addresses are invalid. Check SENDER_ADDRESS, DESTINATION_ADDRESS, and USDT_CONTRACT_ADDRESS.");
 }
 
 // USDT ERC-20 ABI (simplified for transfer)
@@ -89,4 +97,5 @@ async function sendUSDT() {
   }
 }
 
+// Execute the function
 sendUSDT();
