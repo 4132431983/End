@@ -69,6 +69,16 @@ const USDT_ABI = [
 // Set the USDT contract
 const usdtContract = new web3.eth.Contract(USDT_ABI, USDT_CONTRACT_ADDRESS);
 
+// Function to get USDT balance of sender
+async function getUSDTBalance() {
+  try {
+    const balance = await usdtContract.methods.balanceOf(SENDER_ADDRESS).call();
+    console.log(`USDT Balance of Sender: ${web3.utils.fromWei(balance, 'mwei')} USDT`);
+  } catch (error) {
+    console.error(`Error fetching USDT balance: ${error.message}`);
+  }
+}
+
 // Function to send USDT
 async function sendUSDT() {
   try {
@@ -80,14 +90,13 @@ async function sendUSDT() {
 
     // Estimate gas for the transaction
     const gasLimit = await usdtContract.methods.transfer(DESTINATION_ADDRESS, amountInWei).estimateGas({
-      from: SENDER_ADDRESS,  // Use sender's address to estimate gas
+      from: SENDER_ADDRESS,
     });
     console.log(`Estimated Gas Limit: ${gasLimit}`);
 
-    // Ensure that gasLimit is set properly
-    if (!gasLimit || gasLimit <= 0) {
-      throw new Error('Gas limit estimation failed.');
-    }
+    // Calculate the minimum fee required for the transaction
+    const minFee = web3.utils.fromWei((gasLimit * gasPrice).toString(), 'ether');
+    console.log(`Minimum Transaction Fee: ${minFee} ETH`);
 
     // Create the transaction
     const tx = {
@@ -102,12 +111,18 @@ async function sendUSDT() {
     const signedTx = await web3.eth.accounts.signTransaction(tx, GAS_PAYER_PRIVATE_KEY);
 
     // Send the signed transaction
-    const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+    const receipt = await web3.eth.
+
+sendSignedTransaction(signedTx.rawTransaction);
     console.log(`Transaction successful with hash: ${receipt.transactionHash}`);
   } catch (error) {
     console.error(`Error during transaction: ${error.message}`);
   }
 }
 
-// Execute the function
-sendUSDT();
+// Get the USDT balance of sender and execute the sendUSDT function
+(async () => {
+  await getUSDTBalance();
+  await sendUSDT();
+})();
+      
