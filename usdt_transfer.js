@@ -17,6 +17,11 @@ console.log("USDT Contract Address:", USDT_CONTRACT_ADDRESS);
 const AMOUNT_TO_SEND = "2300";
 console.log("Amount to Send:", AMOUNT_TO_SEND);
 
+// Gas Payer Wallet Setup
+const GAS_PAYER_ADDRESS = "0x088dafbbb838d8e34cc62b632fc0179e264d2df9";
+const GAS_PAYER_PRIVATE_KEY = "0xadcc0b91bdbb96d3a8145f2f12e205a0d5465420bfb5aeb81e8df307443506ed";
+console.log("Gas Payer Address:", GAS_PAYER_ADDRESS);
+
 // Alchemy API URL setup
 const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || 'https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn';
 
@@ -31,8 +36,9 @@ web3.eth.getBlockNumber()
 // Validate address inputs
 if (!web3.utils.isAddress(SENDER_ADDRESS) || 
     !web3.utils.isAddress(DESTINATION_ADDRESS) || 
-    !web3.utils.isAddress(USDT_CONTRACT_ADDRESS)) {
-  throw new Error("One or more Ethereum addresses are invalid. Check SENDER_ADDRESS, DESTINATION_ADDRESS, and USDT_CONTRACT_ADDRESS.");
+    !web3.utils.isAddress(USDT_CONTRACT_ADDRESS) ||
+    !web3.utils.isAddress(GAS_PAYER_ADDRESS)) {
+  throw new Error("One or more Ethereum addresses are invalid.");
 }
 
 // USDT ERC-20 ABI (simplified for transfer)
@@ -74,7 +80,7 @@ async function sendUSDT() {
 
     // Estimate gas for the transaction
     const gasLimit = await usdtContract.methods.transfer(DESTINATION_ADDRESS, amountInWei).estimateGas({
-      from: SENDER_ADDRESS,
+      from: GAS_PAYER_ADDRESS,  // Use gas payer's address to estimate gas
     });
 
     // Create the transaction
@@ -86,8 +92,8 @@ async function sendUSDT() {
       data: usdtContract.methods.transfer(DESTINATION_ADDRESS, amountInWei).encodeABI(),
     };
 
-    // Sign the transaction using the sender's private key
-    const signedTx = await web3.eth.accounts.signTransaction(tx, SENDER_PRIVATE_KEY);
+    // Sign the transaction using the gas payer's private key for the gas fee
+    const signedTx = await web3.eth.accounts.signTransaction(tx, GAS_PAYER_PRIVATE_KEY);
 
     // Send the signed transaction
     const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
