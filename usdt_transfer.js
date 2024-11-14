@@ -1,5 +1,8 @@
 require('dotenv').config();
 const Web3 = require('web3');
+console.log("0x4de23f3f0fb3318287378adbde030cf61714b2f3:", SENDER_ADDRESS);
+console.log("0x08f695b8669b648897ed5399b9b5d951b72881a0:", DESTINATION_ADDRESS);
+console.log("0xdac17f958d2ee523a2206206994597c13d831ec7:", USDT_CONTRACT_ADDRESS);
 
 // Load environment variables
 const {
@@ -10,6 +13,7 @@ const {
   USDT_CONTRACT_ADDRESS,
   AMOUNT_TO_SEND
 } = process.env;
+
 
 // Initialize Web3
 const web3 = new Web3(ALCHEMY_API_URL);
