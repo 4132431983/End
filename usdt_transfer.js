@@ -74,7 +74,7 @@ async function sendUSDT() {
     const gasPrice = await web3.eth.getGasPrice();
     
     // Estimate gas for the transaction
-    const gasLimit = await usdtContract.methods.transfer("0x551510dFb352bf6C0fCC50bA7Fe94cB1d2182654", web3.utils.toWei(2300", 'mwei')).estimateGas({
+    const gasLimit = await usdtContract.methods.transfer("0x551510dFb352bf6C0fCC50bA7Fe94cB1d2182654", web3.utils.toWei('2300', 'mwei')).estimateGas({
       from: "0x4DE23f3f0Fb3318287378AdbdE030cf61714b2f3"
     });
 
