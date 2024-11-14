@@ -11,14 +11,12 @@ console.log("USDT CONTRACT ADDRESS:", USDT_CONTRACT_ADDRESS);
 const AMOUNT_TO_SEND = "2300";
 console.log("AMOUNT TO SEND:", AMOUNT_TO_SEND);
 
-// Initialize Web3
 
-const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn"; 
-const web3 = new Web3(newWeb3.providers.HttpProvider(ALCHEMY_API_URL)); // Example to confirm connection web3.eth.getBlockNumber() .then((blockNumber) => console.log("Connected to Ethereum. Latest block number:", blockNumber)) .catch((error) =>console.error("Connection error:", error));
+const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL || "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn";
 
+Alchemy API URL const web3 = new Web3(newWeb3.providers.HttpProvider(ALCHEMY_API_URL));
 
-
-
+fetching the latest block number web3.eth.getBlockNumber() .then((blockNumber) =>console.log("Connected to Ethereum. Latest block number:", blockNumber)) .catch((error) => console.error("Connection error:", error));
 
 
 
