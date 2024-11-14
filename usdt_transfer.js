@@ -1,5 +1,6 @@
 require('dotenv').config();
 const Web3 = require('web3');
+import Web3 from 'Web3';
 
 // Load environment variables
 const {
@@ -11,9 +12,8 @@ const {
   USDT_CONTRACT_ADDRESS,
   AMOUNT_TO_SEND
 } = process.env;
-
 // Initialize Web3
-const web3 = new Web3("https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn");
+const web3 = new Web3(Web3.givenProvider || "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn");
 
 // USDT ERC-20 ABI (simplified for transfer)
 const USDT_ABI = [
