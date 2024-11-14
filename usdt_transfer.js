@@ -26,7 +26,6 @@ console.log("Gas Payer Address:", GAS_PAYER_ADDRESS);
 
 const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://ethwss://eth-sepolia.g.alchemy.com/v2/0hXI9wapnNwxo8F-sTZVaV_zpN3mlTyk'));
 // Initialize Web3 with the Alchemy API URL
-const web3 = new Web3(new Web3.providers.HttpProvider(ALCHEMY_API_URL));
 
 // Confirm connection by fetching the latest block number
 web3.eth.getBlockNumber()
