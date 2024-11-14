@@ -1,6 +1,6 @@
 require('dotenv').config();
 const Web3 = require('web3');
-import Web3 from 'Web3';
+
 
 // Load environment variables
 const {
