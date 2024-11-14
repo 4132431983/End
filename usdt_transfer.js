@@ -13,15 +13,6 @@ console.log("USDT CONTRACT ADDRESS:", USDT_CONTRACT_ADDRESS);
 const AMOUNT_TO_SEND = "2300";
 console.log("AMOUNT TO SEND:", AMOUNT_TO_SEND);
 
-const {
-
-  SENDER_PRIVATE_KEY,
-  DESTINATION_ADDRESS,
-  USDT_CONTRACT_ADDRESS,
-  AMOUNT_TO_SEND
-} = process.env;
-
-
 // Initialize Web3
 const web3 = new Web3(ALCHEMY_API_URL);
 
