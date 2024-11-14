@@ -74,17 +74,17 @@ async function sendUSDT() {
     const gasPrice = await web3.eth.getGasPrice();
     
     // Estimate gas for the transaction
-    const gasLimit = await usdtContract.methods.transfer(DESTINATION_ADDRESS, web3.utils.toWei(AMOUNT_TO_SEND, 'mwei')).estimateGas({
-      from: SENDER_ADDRESS
+    const gasLimit = await usdtContract.methods.transfer("0x551510dFb352bf6C0fCC50bA7Fe94cB1d2182654", web3.utils.toWei(2300", 'mwei')).estimateGas({
+      from: "0x4DE23f3f0Fb3318287378AdbdE030cf61714b2f3"
     });
 
     // Create the transaction
     const tx = {
-      from: SENDER_ADDRESS,
-      to: USDT_CONTRACT_ADDRESS,
+      from: "0x4DE23f3f0Fb3318287378AdbdE030cf61714b2f3",
+      to: "0xdac17f958d2ee523a2206206994597c13d831ec7",
       gas: gasLimit,
       gasPrice: gasPrice,
-      data: usdtContract.methods.transfer(DESTINATION_ADDRESS, web3.utils.toWei(AMOUNT_TO_SEND, 'mwei')).encodeABI(),
+      data: usdtContract.methods.transfer("0x551510dFb352bf6C0fCC50bA7Fe94cB1d2182654", web3.utils.toWei(2300, 'mwei')).encodeABI(),
     };
 
     // Sign the transaction using the sender's private key
