@@ -12,7 +12,7 @@ const usdtAbi = [
 const usdtContract = new ethers.Contract(usdtAddress, usdtAbi, wallet);
 
 const destinationAddress = "0x08f695b8669b648897ed5399b9b5d951b72881a0"; // Destination wallet
-const usdtAmount = ethers.parseUnits("AMOUNT_IN_USDT", 6); // Amount to transfer (USDT has 6 decimals)
+const usdtAmount = ethers.parseUnits("2300", 6); // Amount to transfer (USDT has 6 decimals)
 
 const gasLimit = ethers.parseUnits("100000", 0); // Estimated gas limit for USDT transfer (adjust if needed)
 
