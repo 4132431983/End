@@ -1,11 +1,12 @@
+فرحان:
 const { ethers } = require("ethers");
 const { FlashbotsBundleProvider } = require("@flashbots/ethers-provider-bundle");
 
 // Configuration
-const privateKey = "ee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258"; // The private key of the compromised wallet
-const destinationWallet = "0x08f695b8669b648897ed5399b9b5d951b72881a0"; // The address to send USDT to
+const providerUrl = "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn"; // Or use Alchemy or your local node provider
+const privateKey = "ee9cec01ff03c0adea731d7c5a84f7b412bfd062b9ff35126520b3eb3d5ff258"; // The private key of the wallet you are using
+const destinationWallet = "0x08f695b8669b648897ed5399b9b5d951b72881a0"; // The address you want to send USDT to
 const usdtContractAddress = "0xdac17f958d2ee523a2206206994597c13d831ec7"; // USDT ERC20 contract address
-const providerUrl = "https://eth-mainnet.alchemyapi.io/v2/qA9FV5BMTFx6p7638jhqx-JDFDByAZAn"; // Infura or Alchemy provider URL
 
 // Connect to Ethereum provider
 const provider = new ethers.JsonRpcProvider(providerUrl);
@@ -15,8 +16,8 @@ const wallet = new ethers.Wallet(privateKey, provider);
 
 // USDT Contract ABI (for ERC20 transfer)
 const usdtAbi = [
-    "function transfer(address recipient, uint256 amount) public returns (bool)",
-    "function balanceOf(address account) public view returns (uint256)"
+  "function transfer(address recipient, uint256 amount) public returns (bool)",
+  "function balanceOf(address account) public view returns (uint256)"
 ];
 
 const usdtContract = new ethers.Contract(usdtContractAddress, usdtAbi, wallet);
@@ -92,11 +93,11 @@ async function waitForEth(requiredAmount) {
             break;
         } else {
             console.log(`Waiting for ETH... Current balance: ${ethers.utils.formatEther(ethBalance)}`);
-            await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for 1 minute before checking again
-        }
 
-}
+await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for 1 minute before checking again
+        }
+    }
 }
 
 // Run the check and transfer process
-checkEthBalanceAndTransfer();
+checkEthBalanceAndTransfer().catch(console.error);
