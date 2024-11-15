@@ -22,5 +22,21 @@ async function main() {
     console.error("Error populating transaction:", error);
   }
 }
+const signedTx = await wallet.signTransaction(transaction);
+
+
+const flashbotsProvider = await FlashbotsBundleProvider.create(
+  provider, // This is your Ethereum provider (e.g., Infura, Alchemy)
+  wallet,    // The wallet that will sign the transaction
+  "mainnet", // Ethereum network (mainnet, testnet, etc.)
+);
+
+const signedBundle = await flashbotsProvider.signBundle([{
+  signer: wallet,
+  transaction: populatedTx
+}]);
+
+// Send the bundle to Flashbots relay
+const bundleSubmission = await flashbotsProvider.sendBundle(signedBundle, blockNumber + 1);
 
 main();
