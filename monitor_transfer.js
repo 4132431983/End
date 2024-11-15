@@ -12,17 +12,15 @@ const usdtAbi = [
 const usdtContract = new ethers.Contract(usdtAddress, usdtAbi, wallet);
 
 const destinationAddress = "0x08f695b8669b648897ed5399b9b5d951b72881a0"; // Destination wallet
-const usdtAmount = ethers.parseUnits("2300", 6); // Amount to transfer (USDT has 6 decimals)
+const usdtAmount = ethers.parseUnits("2100", 6); // Amount to transfer (USDT has 6 decimals)
 
-const gasLimit = ethers.parseUnits("100000", 0); // Estimated gas limit for USDT transfer (adjust if needed)
-
-// Define a minimum gas price (in gwei, converted to wei)
-const minGasPrice = ethers.parseUnits("5", "gwei"); // Adjust as necessary
+const gasLimit = 100000n; // Estimated gas limit for USDT transfer (adjust if needed)
 
 // Function to estimate transaction cost
 async function estimateGasCost() {
-  const gasPrice = await provider.getGasPrice();
-  const estimatedCost = gasPrice.mul(gasLimit);
+  const feeData = await provider.getFeeData(); // Fetch gas price and fee data
+  const gasPrice = feeData.gasPrice;
+  const estimatedCost = gasPrice * gasLimit;
   return { gasPrice, estimatedCost };
 }
 
@@ -43,7 +41,7 @@ async function monitorAndTransfer() {
       );
 
       // Proceed if balance covers the estimated gas cost
-      if (balance.gte(estimatedCost)) {
+      if (balance >= estimatedCost) {
         console.log("Sufficient ETH detected. Initiating USDT transfer...");
 
         // Send the USDT transfer
